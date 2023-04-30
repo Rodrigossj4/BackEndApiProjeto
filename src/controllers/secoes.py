@@ -46,7 +46,7 @@ def get():
 
 def retorna_produtos(id):
     cursor = conn.cursor()
-    cursor.execute('SELECT id, nome FROM PRODUTOS WHERE idSecao = ' + id )
+    cursor.execute('SELECT id, nome FROM PRODUTOS WHERE idSecao = ' + str(id) )
     produtos=  cursor.fetchall()
     cursor.close()
     

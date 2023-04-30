@@ -1,0 +1,31 @@
+CREATE DATABASE Ecommerce
+    WITH
+    OWNER = postgres
+    ENCODING = 'UTF8'
+    LC_COLLATE = 'Portuguese_Brazil.1252'
+    LC_CTYPE = 'Portuguese_Brazil.1252'
+    TABLESPACE = pg_default
+    CONNECTION LIMIT = -1
+    IS_TEMPLATE = False;
+
+Create Table secao(
+	id serial primary key,
+	Nome varchar(100) not null,
+	Ativa bool default true
+)
+
+insert into secao(nome) values('secao 1')
+insert into secao(nome) values('secao 2')
+
+Create Table produtos(
+	id serial primary key,
+	Nome varchar(250) not null,
+	Preco numeric not null,
+	idSecao int not null,
+	Ativa bool default true,
+	foreign key (idSecao) references secao(id)
+)
+
+insert into produtos(nome, preco, idSecao) values('Produto 1','2.0', 2)	
+insert into produtos(nome, preco, idSecao) values('Produto 2','4.0', 1)	
+
