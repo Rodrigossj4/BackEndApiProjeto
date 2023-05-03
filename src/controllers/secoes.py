@@ -1,25 +1,10 @@
-from typing import Optional
 from flask import request, make_response,jsonify
 from src.server.instance import server
 from flask_pydantic_spec import Response, Request
-from pydantic import BaseModel
-import psycopg2   
- 
-conn = psycopg2.connect(database="ecommerce", 
-                        user="postgres",
-                        password="123456", 
-                        host="localhost", port="5432")
-
-class Secao(BaseModel):
-    id: Optional[int]
-    nome: str
-    
-class Secoes(BaseModel):    
-    Secoes:list[Secao] 
-    
-class Erro(BaseModel):
-    status:int
-    msg:str  
+from src.models.Secao.Secao import Secao
+from src.models.Secao.Secoes import Secoes
+from src.models.Erro import Erro
+from db import conn 
 
 @server.app.get('/Secoes')
 @server.api.validate(resp=Response(HTTP_200=Secoes),tags=['Secoes'])

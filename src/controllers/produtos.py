@@ -1,29 +1,12 @@
-from typing import Optional
 from flask import request, make_response,jsonify
 from src.server.instance import server
 from flask_pydantic_spec import Response, Request
-from pydantic import BaseModel
-import psycopg2   
- 
-conn = psycopg2.connect(database="ecommerce", 
-                        user="postgres",
-                        password="123456", 
-                        host="localhost", port="5432")
-    
-    
-class Produto(BaseModel):
-    id: Optional[int]
-    nome: str
-    idSecao: str
-    preco: str  
-    
-class Produtos(BaseModel): 
-    Produtos:list[Produto] 
+from src.models.Produto.Produto import Produto
+from src.models.Produto.Produtos import Produtos
+from src.models.Erro import Erro
+from db import conn
 
-class Erro(BaseModel):
-    status:int
-    msg:str 
-    
+            
 @server.app.get('/Produtos')
 @server.api.validate(resp=Response(HTTP_200=Produtos),tags=['Produtos'])
 def getProdutos():
