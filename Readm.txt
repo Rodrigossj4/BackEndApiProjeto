@@ -1,0 +1,9 @@
+Para o perfeito funcionamento do projeto deverão ser ajustadas a string de conexão com o banco no arquivo db.py.
+O arquivo se encontra na raíz do projeto e consta com o valores padrões abaixo:
+
+database="ecommerce", 
+          user="postgres",
+          password="123456", 
+          host="localhost", port="5432"
+
+O projeto roda apartir do arquivo app.py          
